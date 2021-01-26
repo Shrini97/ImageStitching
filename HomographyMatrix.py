@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.linalg import svd
 
-def homographic_matrix(A,B):
+def homographic_matrix(A, B):
     '''
     Retruns the homographic matrix corresponding to the
     homography of 2 images

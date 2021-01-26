@@ -93,9 +93,8 @@ def select_keypts(img1, img2):
                 j+=1
                 Left = True
         if i == 4 and j == 4:
-            np.save("Left.npy",A)
-            np.save("Right.npy",B)
-            sys.exit()
+            root.destroy()
+            return A, B
 
     #mouseclick event
     canvas.bind("<Button 1>",printcoords, Left)
