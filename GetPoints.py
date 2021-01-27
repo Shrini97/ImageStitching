@@ -33,7 +33,7 @@ def process_images(img1, img2):
     img2 = cv2.resize(img2, (int(w2*h1/h2), h1))
     
     combined_img = cv2.hconcat([img1, img2])
-    return combined_img
+    return combined_img, h2/h1
 
 def select_keypts(img1, img2):
     '''
@@ -63,7 +63,7 @@ def select_keypts(img1, img2):
     frame.pack(fill=BOTH,expand=1)
     
     #adding the image
-    combined_img = process_images(img1, img2)
+    combined_img, scale = process_images(img1, img2)
     
     img_pil = ImageTk.PhotoImage(Image.fromarray(combined_img))
     # we will need h to bound the click region from below and to restrict the 
@@ -95,7 +95,7 @@ def select_keypts(img1, img2):
                 Left = False
             if event.x > w and not Left:
                 canvas.create_circle(event.x,event.y, 5, fill="blue", outline="#DDD", width=4)
-                B[j,0], B[j,1] = event.x - w, event.y
+                B[j,0], B[j,1] = scale*(event.x - w), scale*event.y
                 j+=1
                 print(A,B)
                 Left = True
