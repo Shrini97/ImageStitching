@@ -18,7 +18,14 @@ ret_2, img2 = vid_2.read()
 
 select_keypts(img2, img1)
 A, B = np.load("./params/A.npy"), np.load("./params/B.npy")
+
 H = homographic_matrix(B,A)
 np.save("./params/H.npy", H)
 print("Homography matrix has been stored")
 print(H)
+
+warped_image = cv2.warpPerspective(img1, H, (img2.shape[1],img2.shape[0]))
+cv2.imshow("zoom angle image", img1)
+cv2.imshow("wide angle image", img2)
+cv2.imshow("warped image space", warped_image)
+cv2.waitKey(0)

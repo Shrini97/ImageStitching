@@ -81,25 +81,22 @@ def select_keypts(img1, img2):
     #function to be called when mouse is clicked
     def printcoords(event):
         global Left, A, B, i, j
-        if i == 4 and j == 4:
-            np.save("A.npy", A)
-            np.save("B.npy", B)
-            root.destroy()
         
         if event.y < h:
             if event.x < w and Left:
                 canvas.create_circle(event.x,event.y, 5, fill="blue", outline="#DDD", width=4)
                 A[i,0], A[i,1] = event.x, event.y
                 i+=1
-                print(A,B)
                 Left = False
             if event.x > w and not Left:
                 canvas.create_circle(event.x,event.y, 5, fill="blue", outline="#DDD", width=4)
                 B[j,0], B[j,1] = scale*(event.x - w), scale*event.y
                 j+=1
-                print(A,B)
                 Left = True
-            
+                if i == 4 and j == 4:
+                    np.save("./params/A.npy", A)
+                    np.save("./params/B.npy", B)
+                    root.destroy()
     #mouseclick event
     canvas.bind("<Button 1>",printcoords, Left)
     root.mainloop()
