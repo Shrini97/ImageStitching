@@ -1,7 +1,7 @@
 # ImageStitching
 A set of functions that can stitch together 2 images using manual or automatically generated keypoints
 
-# usage
+# Usage
 ## Step 0:View transformation
 To view the transformation run 
 ```console
@@ -45,3 +45,6 @@ def transform(list_bbox, zoom_image, wide_image, H):
     '''
 ```
 The aforementioned function returns the transformed bbox coordinates (given and returned in matrix diagonal form), and also the transformed image.
+
+## Results
+![Result image 1](./samples/result.png)
